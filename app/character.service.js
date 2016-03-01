@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1, context_1) {
+System.register(["angular2/core", "angular2/http", 'rxjs/Rx'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,33 +10,34 @@ System.register(['angular2/core'], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, core_2;
-    var CharacterComponent;
+    var core_1, http_1;
+    var CharacterService;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
-                core_2 = core_1_1;
-            }],
+            },
+            function (http_1_1) {
+                http_1 = http_1_1;
+            },
+            function (_1) {}],
         execute: function() {
-            CharacterComponent = (function () {
-                function CharacterComponent() {
+            CharacterService = (function () {
+                function CharacterService(_http) {
+                    this._http = _http;
                 }
-                __decorate([
-                    core_2.Input(), 
-                    __metadata('design:type', Object)
-                ], CharacterComponent.prototype, "character", void 0);
-                CharacterComponent = __decorate([
-                    core_1.Component({
-                        selector: 'story-character',
-                        template: '<h3 *ngIf="character">You selected {{character.name}}</h3>'
-                    }), 
-                    __metadata('design:paramtypes', [])
-                ], CharacterComponent);
-                return CharacterComponent;
+                CharacterService.prototype.getCharacters = function (storyId) {
+                    return this._http.get('app/characters.json')
+                        .map(function (response) { return response.json().data; });
+                };
+                CharacterService = __decorate([
+                    core_1.Injectable(), 
+                    __metadata('design:paramtypes', [http_1.Http])
+                ], CharacterService);
+                return CharacterService;
             }());
-            exports_1("CharacterComponent", CharacterComponent);
+            exports_1("CharacterService", CharacterService);
         }
     }
 });
-//# sourceMappingURL=character.component.js.map
+//# sourceMappingURL=character.service.js.map

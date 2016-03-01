@@ -1,7 +1,6 @@
 import {bootstrap} from 'angular2/platform/browser'
-import {Character} from './character.component'
-import {CharacterListComponent} from "./character-list.component";
+import {AppComponent} from "./app.component";
 
-bootstrap(CharacterListComponent)
+bootstrap(AppComponent,[])
     .then(success => console.log("Bootstrap success"))
     .then(error => console.log(error));
