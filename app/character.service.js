@@ -27,7 +27,7 @@ System.register(["angular2/core", "angular2/http", 'rxjs/Rx'], function(exports_
                     this._http = _http;
                 }
                 CharacterService.prototype.getCharacters = function (storyId) {
-                    return this._http.get('app/characters.json')
+                    return this._http.get('api/characters.json')
                         .map(function (response) { return response.json().data; });
                 };
                 CharacterService = __decorate([

@@ -1,23 +1,36 @@
 import {Component} from "angular2/core";
 import {HTTP_PROVIDERS} from "angular2/http";
-import {CharactersComponent} from "./characters.component";
+import {CharacterSolvedComponent} from "./solution/character-solved.component";
+import {CharacterComponent} from "./character.component";
 
 @Component({
     selector:'story-app',
     template:`<div>
-    <h1>Storyline Tracker</h1>
-    <h3>Component Demo</h3>
-    <story-characters [storyId]="7" (changed)="changed($event)">
-    </story-characters>
+    <h3>Storyline Tracker - Data Binding Demo</h3>
+    <div style="margin: 1em;">
+        <button class="dashboard-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect
+      mdl-button--accent" (click)="solve()">{{buttonText}}</button>
+    </div>
+
+    <span [ngSwitch]="showSolution">
+        <template [ngSwitchWhen]="true" ]>
+            <story-character-solved></story-character-solved>
+        </template>
+        <template ngSwitchDefault>
+            <story-character></story-character>
+        </template>
+    </span>
 </div>
     `,
-    directives: [CharactersComponent],
+    directives: [CharacterComponent, CharacterSolvedComponent],
     providers:[HTTP_PROVIDERS]
 })
 export class AppComponent {
-    changed(changedCharacter: any){
-        if(changedCharacter){
-            console.log(`Event Emitter said you selected ${changedCharacter.name}`);
-        }
+    showSolution = false;
+    buttonText = 'Switch to Solution';
+
+    solve() {
+        this.showSolution = !this.showSolution;
+        this.buttonText = this.showSolution ? 'Switch to  Starter' : 'Switch to Solution'
     }
 }

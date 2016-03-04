@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1, context_1) {
+System.register(["angular2/core"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -11,7 +11,7 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1;
-    var Character, Vehicle, CharacterComponent;
+    var Character, Vehicle, CharacterSolvedComponent;
     return {
         setters:[
             function (core_1_1) {
@@ -35,8 +35,8 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 }
                 return Vehicle;
             }());
-            CharacterComponent = (function () {
-                function CharacterComponent() {
+            CharacterSolvedComponent = (function () {
+                function CharacterSolvedComponent() {
                     this.color = '';
                     this.isSelected = false;
                     this.selectLabel = 'Select a Character';
@@ -47,23 +47,23 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                     ];
                     this.character = new Character(100, 'Boba Fett', 'dark', 'assets/man.png', 'http://angular.io');
                 }
-                CharacterComponent.prototype.select = function (name) {
+                CharacterSolvedComponent.prototype.select = function (name) {
                     var msg = "You selected " + name;
                     console.log(msg);
                     this.isSelected = !this.isSelected;
                 };
-                CharacterComponent = __decorate([
+                CharacterSolvedComponent = __decorate([
                     core_1.Component({
-                        selector: 'story-character',
-                        templateUrl: './app/character.component.html',
-                        styleUrls: ['./app/character.component.css']
+                        selector: 'story-character-solved',
+                        templateUrl: './app/solution/character-solved.component.html',
+                        styleUrl: ['./app/solution/character-solved.component.css']
                     }), 
                     __metadata('design:paramtypes', [])
-                ], CharacterComponent);
-                return CharacterComponent;
+                ], CharacterSolvedComponent);
+                return CharacterSolvedComponent;
             }());
-            exports_1("CharacterComponent", CharacterComponent);
+            exports_1("CharacterSolvedComponent", CharacterSolvedComponent);
         }
     }
 });
-//# sourceMappingURL=character.component.js.map
+//# sourceMappingURL=character-solved.component.js.map

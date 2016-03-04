@@ -1,4 +1,4 @@
-System.register(["angular2/core", "angular2/http", "./characters.component"], function(exports_1, context_1) {
+System.register(["angular2/core", "angular2/http", "./solution/character-solved.component", "./character.component"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(["angular2/core", "angular2/http", "./characters.component"], fu
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1, characters_component_1;
+    var core_1, http_1, character_solved_component_1, character_component_1;
     var AppComponent;
     return {
         setters:[
@@ -20,23 +20,27 @@ System.register(["angular2/core", "angular2/http", "./characters.component"], fu
             function (http_1_1) {
                 http_1 = http_1_1;
             },
-            function (characters_component_1_1) {
-                characters_component_1 = characters_component_1_1;
+            function (character_solved_component_1_1) {
+                character_solved_component_1 = character_solved_component_1_1;
+            },
+            function (character_component_1_1) {
+                character_component_1 = character_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
                 function AppComponent() {
+                    this.showSolution = false;
+                    this.buttonText = 'Switch to Solution';
                 }
-                AppComponent.prototype.changed = function (changedCharacter) {
-                    if (changedCharacter) {
-                        console.log("Event Emitter said you selected " + changedCharacter.name);
-                    }
+                AppComponent.prototype.solve = function () {
+                    this.showSolution = !this.showSolution;
+                    this.buttonText = this.showSolution ? 'Switch to  Starter' : 'Switch to Solution';
                 };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'story-app',
-                        template: "<div>\n    <h1>Storyline Tracker</h1>\n    <h3>Component Demo</h3>\n    <story-characters [storyId]=\"7\" (changed)=\"changed($event)\">\n    </story-characters>\n</div>\n    ",
-                        directives: [characters_component_1.CharactersComponent],
+                        template: "<div>\n    <h3>Storyline Tracker - Data Binding Demo</h3>\n    <div style=\"margin: 1em;\">\n        <button class=\"dashboard-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect\n      mdl-button--accent\" (click)=\"solve()\">{{buttonText}}</button>\n    </div>\n\n    <span [ngSwitch]=\"showSolution\">\n        <template [ngSwitchWhen]=\"true\" ]>\n            <story-character-solved></story-character-solved>\n        </template>\n        <template ngSwitchDefault>\n            <story-character></story-character>\n        </template>\n    </span>\n</div>\n    ",
+                        directives: [character_component_1.CharacterComponent, character_solved_component_1.CharacterSolvedComponent],
                         providers: [http_1.HTTP_PROVIDERS]
                     }), 
                     __metadata('design:paramtypes', [])
