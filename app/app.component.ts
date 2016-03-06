@@ -5,7 +5,8 @@ import 'rxjs/Rx';
 import {CharactersComponent} from './characters/characters';
 import { DashboardComponent } from './dashboard/dashboard';
 import {VehiclesComponent} from './vehicles/vehicles';
-import {ModalComponent, ModalService, SpinnerService,SpinnerComponent,ToastComponent, ToastService} from './blocks/blocks';
+import {CONFIG} from './shared/shared';
+import {EntityService, ExceptionService, ModalComponent, ModalService, SpinnerService,SpinnerComponent,ToastComponent, ToastService} from './blocks/blocks';
 
 
 @Component({
@@ -15,6 +16,8 @@ import {ModalComponent, ModalService, SpinnerService,SpinnerComponent,ToastCompo
     directives: [ROUTER_DIRECTIVES, ModalComponent, SpinnerComponent, ToastComponent],
     providers: [
         ROUTER_PROVIDERS,
+        EntityService,
+        ExceptionService,
         ModalService,
         SpinnerService,
         ToastService

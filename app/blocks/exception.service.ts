@@ -1,3 +1,23 @@
-/**
- * Created by piotr on 06.03.16.
- */
+import {Injectable} from "angular2/core";
+import {Response} from "angular2/http";
+import {Observable} from 'rxjs/Rx';
+
+import {ToastService} from "./toast/toast.service";
+
+
+@Injectable()
+export class ExceptionService {
+    constructor(private _toastService:ToastService) {
+    }
+
+    catchBadResponse:(errorResponse:any) => Observable<any> = (errorResponse:any) => {
+        let res = <Response>errorResponse;
+        let err = res.json();
+        let emsg = err ?
+            (err.error ? err.error : JSON.stringify(err)) :
+            (res.statusText || 'unknown error');
+        this._toastService.activate(`Error - Bad Response - ${msg}`);
+        return Observable.of();
+        //should be return Observable.throw(emsg);
+    }
+}
