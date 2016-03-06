@@ -1,3 +1,6 @@
-/**
- * Created by piotr on 06.03.16.
- */
+import {Injectable} from "angular2/core";
+
+@Injectable()
+export class ToastService {
+    activate:(message?:string, title?:string) => void;
+}

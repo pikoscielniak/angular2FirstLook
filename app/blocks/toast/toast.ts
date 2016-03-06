@@ -1,3 +1,2 @@
-/**
- * Created by piotr on 06.03.16.
- */
+export * from './toast.component';
+export * from './toast.service';

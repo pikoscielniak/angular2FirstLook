@@ -5,17 +5,18 @@ import 'rxjs/Rx';
 import {CharactersComponent} from './characters/characters';
 import { DashboardComponent } from './dashboard/dashboard';
 import {VehiclesComponent} from './vehicles/vehicles';
-import {SpinnerService,SpinnerComponent} from './blocks/blocks';
+import {SpinnerService,SpinnerComponent,ToastComponent, ToastService} from './blocks/blocks';
 
 
 @Component({
     selector: 'story-app',
     templateUrl: 'app/app.component.html',
     styleUrls: ['app/app.component.css'],
-    directives: [ROUTER_DIRECTIVES, SpinnerComponent],
+    directives: [ROUTER_DIRECTIVES, SpinnerComponent, ToastComponent],
     providers: [
         ROUTER_PROVIDERS,
-        SpinnerService
+        SpinnerService,
+        ToastService
     ]
 })
 @RouteConfig([
@@ -31,10 +32,10 @@ export class AppComponent {
         {caption: 'Vehicles', link: ['Vehicles']}
     ]
 
-    constructor(private _spinnerService:SpinnerService) {
+    constructor(private _service:ToastService) {
     }
 
     resetDb() {
-        this._spinnerService.show();
+        this._service.activate("yeah", "fuck");
     }
 }

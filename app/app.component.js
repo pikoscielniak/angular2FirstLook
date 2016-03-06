@@ -35,8 +35,8 @@ System.register(["angular2/core", "angular2/router", 'rxjs/Rx', './characters/ch
             }],
         execute: function() {
             AppComponent = (function () {
-                function AppComponent(_spinnerService) {
-                    this._spinnerService = _spinnerService;
+                function AppComponent(_service) {
+                    this._service = _service;
                     this.menuItems = [
                         { caption: 'Dashboard', link: ['Dashboard'] },
                         { caption: 'Characters', link: ['Characters'] },
@@ -44,17 +44,18 @@ System.register(["angular2/core", "angular2/router", 'rxjs/Rx', './characters/ch
                     ];
                 }
                 AppComponent.prototype.resetDb = function () {
-                    this._spinnerService.show();
+                    this._service.activate("yeah", "fuck");
                 };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'story-app',
                         templateUrl: 'app/app.component.html',
                         styleUrls: ['app/app.component.css'],
-                        directives: [router_1.ROUTER_DIRECTIVES, blocks_1.SpinnerComponent],
+                        directives: [router_1.ROUTER_DIRECTIVES, blocks_1.SpinnerComponent, blocks_1.ToastComponent],
                         providers: [
                             router_1.ROUTER_PROVIDERS,
-                            blocks_1.SpinnerService
+                            blocks_1.SpinnerService,
+                            blocks_1.ToastService
                         ]
                     }),
                     router_1.RouteConfig([
@@ -62,7 +63,7 @@ System.register(["angular2/core", "angular2/router", 'rxjs/Rx', './characters/ch
                         { path: '/vehicles/...', name: 'Vehicles', component: vehicles_1.VehiclesComponent },
                         { path: '/characters/...', name: 'Characters', component: characters_1.CharactersComponent }
                     ]), 
-                    __metadata('design:paramtypes', [blocks_1.SpinnerService])
+                    __metadata('design:paramtypes', [blocks_1.ToastService])
                 ], AppComponent);
                 return AppComponent;
             }());

@@ -17,5 +17,4 @@ export class SpinnerService {
     hide() {
         this._spinnerSubject.next(<ISpinnerState>{show: false});
     }
-
 }
