@@ -1,36 +1,9 @@
 import {Component} from "angular2/core";
-import {HTTP_PROVIDERS} from "angular2/http";
-import {CharacterSolvedComponent} from "./solution/character-solved.component";
-import {CharacterComponent} from "./character.component";
-
 @Component({
     selector:'story-app',
-    template:`<div>
-    <h3>Storyline Tracker - Data Binding Demo</h3>
-    <div style="margin: 1em;">
-        <button class="dashboard-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect
-      mdl-button--accent" (click)="solve()">{{buttonText}}</button>
-    </div>
-
-    <span [ngSwitch]="showSolution">
-        <template [ngSwitchWhen]="true" ]>
-            <story-character-solved></story-character-solved>
-        </template>
-        <template ngSwitchDefault>
-            <story-character></story-character>
-        </template>
-    </span>
-</div>
-    `,
-    directives: [CharacterComponent, CharacterSolvedComponent],
-    providers:[HTTP_PROVIDERS]
+    templateUrl:'app/app.component.html',
+    styleUrls:['app/app.component.css']
 })
-export class AppComponent {
-    showSolution = false;
-    buttonText = 'Switch to Solution';
+export class AppComponent{
 
-    solve() {
-        this.showSolution = !this.showSolution;
-        this.buttonText = this.showSolution ? 'Switch to  Starter' : 'Switch to Solution'
-    }
 }
