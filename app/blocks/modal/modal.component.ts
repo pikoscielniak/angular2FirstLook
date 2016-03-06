@@ -1,6 +1,8 @@
 import {Component,OnInit} from "angular2/core";
 import {ModalService} from "./modal.service";
 
+const KEY_ESC = 27;
+
 @Component({
     selector: 'modal-confirm',
     templateUrl: 'app/blocks/modal/modal.component.html',

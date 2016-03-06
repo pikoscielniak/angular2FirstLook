@@ -7,7 +7,6 @@ import { DashboardComponent } from './dashboard/dashboard';
 import {VehiclesComponent} from './vehicles/vehicles';
 import {ModalComponent, ModalService, SpinnerService,SpinnerComponent,ToastComponent, ToastService} from './blocks/blocks';
 
-const KEY_ESC = 27;
 
 @Component({
     selector: 'story-app',
