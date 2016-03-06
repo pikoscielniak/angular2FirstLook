@@ -1,3 +1,2 @@
-/**
- * Created by piotr on 06.03.16.
- */
+export * from './spinner.component';
+export * from './spinner.service';

@@ -2,17 +2,20 @@ import {Component} from "angular2/core";
 import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from "angular2/router";
 import 'rxjs/Rx';
 
+import {CharactersComponent} from './characters/characters';
 import { DashboardComponent } from './dashboard/dashboard';
-import {VehiclesComponent} from './vehicles/vehicles'
-import {CharactersComponent} from './characters/characters'
+import {VehiclesComponent} from './vehicles/vehicles';
+import {SpinnerService,SpinnerComponent} from './blocks/blocks';
+
 
 @Component({
     selector: 'story-app',
     templateUrl: 'app/app.component.html',
     styleUrls: ['app/app.component.css'],
-    directives: [ROUTER_DIRECTIVES],
+    directives: [ROUTER_DIRECTIVES, SpinnerComponent],
     providers: [
-        ROUTER_PROVIDERS
+        ROUTER_PROVIDERS,
+        SpinnerService
     ]
 })
 @RouteConfig([
@@ -28,7 +31,10 @@ export class AppComponent {
         {caption: 'Vehicles', link: ['Vehicles']}
     ]
 
-    resetDb() {
+    constructor(private _spinnerService:SpinnerService) {
+    }
 
+    resetDb() {
+        this._spinnerService.show();
     }
 }
