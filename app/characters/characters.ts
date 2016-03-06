@@ -1,3 +1,5 @@
-/**
- * Created by piotr on 06.03.16.
- */
+export * from './characters.component'
+export * from './character.component'
+export * from './character-list.component'
+//export * from './character.service'
+//export * from './sort-characters.pipe'

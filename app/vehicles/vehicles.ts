@@ -1,3 +1,4 @@
-/**
- * Created by piotr on 06.03.16.
- */
+export * from './vehicle.component'
+export * from './vehicle.service'
+export * from './vehicle-list.component'
+export * from './vehicles.component'

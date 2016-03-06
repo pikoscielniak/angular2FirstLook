@@ -1,3 +1,1 @@
-/**
- * Created by piotr on 06.03.16.
- */
+export * from './dashboard.component'

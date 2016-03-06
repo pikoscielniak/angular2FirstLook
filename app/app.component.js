@@ -1,4 +1,4 @@
-System.register(["angular2/core"], function(exports_1, context_1) {
+System.register(["angular2/core", "angular2/router", 'rxjs/Rx', './dashboard/dashboard', './vehicles/vehicles', './characters/characters'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,23 +10,52 @@ System.register(["angular2/core"], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, router_1, dashboard_1, vehicles_1, characters_1;
     var AppComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
+            },
+            function (_1) {},
+            function (dashboard_1_1) {
+                dashboard_1 = dashboard_1_1;
+            },
+            function (vehicles_1_1) {
+                vehicles_1 = vehicles_1_1;
+            },
+            function (characters_1_1) {
+                characters_1 = characters_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
                 function AppComponent() {
+                    this.menuItems = [
+                        { caption: 'Dashboard', link: ['Dashboard'] },
+                        { caption: 'Characters', link: ['Characters'] },
+                        { caption: 'Vehicles', link: ['Vehicles'] }
+                    ];
                 }
+                AppComponent.prototype.resetDb = function () {
+                };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'story-app',
                         templateUrl: 'app/app.component.html',
-                        styleUrls: ['app/app.component.css']
-                    }), 
+                        styleUrls: ['app/app.component.css'],
+                        directives: [router_1.ROUTER_DIRECTIVES],
+                        providers: [
+                            router_1.ROUTER_PROVIDERS
+                        ]
+                    }),
+                    router_1.RouteConfig([
+                        { path: '/dashboard', name: 'Dashboard', component: dashboard_1.DashboardComponent, useAsDefault: true },
+                        { path: '/vehicles/...', name: 'Vehicles', component: vehicles_1.VehiclesComponent },
+                        { path: '/characters/...', name: 'Characters', component: characters_1.CharactersComponent }
+                    ]), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);
                 return AppComponent;
