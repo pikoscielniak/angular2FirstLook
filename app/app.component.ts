@@ -5,16 +5,18 @@ import 'rxjs/Rx';
 import {CharactersComponent} from './characters/characters';
 import { DashboardComponent } from './dashboard/dashboard';
 import {VehiclesComponent} from './vehicles/vehicles';
-import {SpinnerService,SpinnerComponent,ToastComponent, ToastService} from './blocks/blocks';
+import {ModalComponent, ModalService, SpinnerService,SpinnerComponent,ToastComponent, ToastService} from './blocks/blocks';
 
+const KEY_ESC = 27;
 
 @Component({
     selector: 'story-app',
     templateUrl: 'app/app.component.html',
     styleUrls: ['app/app.component.css'],
-    directives: [ROUTER_DIRECTIVES, SpinnerComponent, ToastComponent],
+    directives: [ROUTER_DIRECTIVES, ModalComponent, SpinnerComponent, ToastComponent],
     providers: [
         ROUTER_PROVIDERS,
+        ModalService,
         SpinnerService,
         ToastService
     ]
@@ -32,7 +34,7 @@ export class AppComponent {
         {caption: 'Vehicles', link: ['Vehicles']}
     ]
 
-    constructor(private _service:ToastService) {
+    constructor(private _service:ModalService) {
     }
 
     resetDb() {

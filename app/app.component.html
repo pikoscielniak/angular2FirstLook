@@ -3,7 +3,8 @@
         <div class="mdl-layout__header-row">
             <span class="mdl-layout-title">Storyline Tracker</span>
             <button id="reset-button" class="mdl-button mdl-js-button mdl-js-ripple-effect
-            mdl-button--accent mdl-button--raised" (click)="resetDb()" >Reset Data</button>
+            mdl-button--accent mdl-button--raised" (click)="resetDb()">Reset Data
+            </button>
         </div>
         <div class="mdl-navigation">
             <a *ngFor="#item of menuItems" [routerLink]="item.link" class="nav-link" href="">{{item.caption}}</a>
@@ -12,10 +13,11 @@
     <main class="mdl-layout__content">
         <section>
             <div class="page-content">
-               <router-outlet></router-outlet>
+                <router-outlet></router-outlet>
             </div>
         </section>
         <story-spinner></story-spinner>
         <toast></toast>
+        <modal-confirm></modal-confirm>
     </main>
 </div>

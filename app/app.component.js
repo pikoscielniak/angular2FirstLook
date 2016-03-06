@@ -11,7 +11,7 @@ System.register(["angular2/core", "angular2/router", 'rxjs/Rx', './characters/ch
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1, router_1, characters_1, dashboard_1, vehicles_1, blocks_1;
-    var AppComponent;
+    var KEY_ESC, AppComponent;
     return {
         setters:[
             function (core_1_1) {
@@ -34,6 +34,7 @@ System.register(["angular2/core", "angular2/router", 'rxjs/Rx', './characters/ch
                 blocks_1 = blocks_1_1;
             }],
         execute: function() {
+            KEY_ESC = 27;
             AppComponent = (function () {
                 function AppComponent(_service) {
                     this._service = _service;
@@ -51,9 +52,10 @@ System.register(["angular2/core", "angular2/router", 'rxjs/Rx', './characters/ch
                         selector: 'story-app',
                         templateUrl: 'app/app.component.html',
                         styleUrls: ['app/app.component.css'],
-                        directives: [router_1.ROUTER_DIRECTIVES, blocks_1.SpinnerComponent, blocks_1.ToastComponent],
+                        directives: [router_1.ROUTER_DIRECTIVES, blocks_1.ModalComponent, blocks_1.SpinnerComponent, blocks_1.ToastComponent],
                         providers: [
                             router_1.ROUTER_PROVIDERS,
+                            blocks_1.ModalService,
                             blocks_1.SpinnerService,
                             blocks_1.ToastService
                         ]
@@ -63,7 +65,7 @@ System.register(["angular2/core", "angular2/router", 'rxjs/Rx', './characters/ch
                         { path: '/vehicles/...', name: 'Vehicles', component: vehicles_1.VehiclesComponent },
                         { path: '/characters/...', name: 'Characters', component: characters_1.CharactersComponent }
                     ]), 
-                    __metadata('design:paramtypes', [blocks_1.ToastService])
+                    __metadata('design:paramtypes', [blocks_1.ModalService])
                 ], AppComponent);
                 return AppComponent;
             }());

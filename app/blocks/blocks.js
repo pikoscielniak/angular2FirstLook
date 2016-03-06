@@ -1,4 +1,4 @@
-System.register(['./spinner/spinner', './toast/toast'], function(exports_1, context_1) {
+System.register(['./modal/modal', './spinner/spinner', './toast/toast'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     function exportStar_1(m) {
@@ -10,6 +10,9 @@ System.register(['./spinner/spinner', './toast/toast'], function(exports_1, cont
     }
     return {
         setters:[
+            function (modal_1_1) {
+                exportStar_1(modal_1_1);
+            },
             function (spinner_1_1) {
                 exportStar_1(spinner_1_1);
             },
