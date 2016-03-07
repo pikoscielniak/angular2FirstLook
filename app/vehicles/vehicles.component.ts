@@ -15,7 +15,7 @@ import {VehicleComponent} from "./vehicle.component";
 @RouteConfig([
     {path: '/', name: 'Vehicles', component: VehicleListComponent, useAsDefault: true},
     {path: '/list/:id', name: 'Vehicles', component: VehicleListComponent},
-    {path: '/:id', name: 'Vehicles', component: VehicleComponent}
+    {path: '/:id', name: 'Vehicle', component: VehicleComponent}
 ])
 export class VehiclesComponent {
 
