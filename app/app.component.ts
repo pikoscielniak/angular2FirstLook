@@ -5,7 +5,7 @@ import 'rxjs/Rx';
 
 import { InMemoryBackendConfig, InMemoryBackendService, SEED_DATA } from 'a2-in-memory-web-api/core';
 import {InMemoryStoryService} from '../api/in-memory-story.service';
-import {CharactersComponent} from './characters/characters';
+import {CharactersComponent, CharacterService} from './characters/characters';
 import { DashboardComponent } from './dashboard/dashboard';
 import {VehiclesComponent} from './vehicles/vehicles';
 import {CONFIG, MessageService} from './shared/shared';
@@ -18,10 +18,11 @@ import {EntityService, ExceptionService, ModalComponent, ModalService, SpinnerSe
     directives: [ROUTER_DIRECTIVES, ModalComponent, SpinnerComponent, ToastComponent],
     providers: [
         HTTP_PROVIDERS,
-        ROUTER_PROVIDERS,
         provide(XHRBackend, { useClass: InMemoryBackendService }),
         provide(SEED_DATA, { useClass: InMemoryStoryService }),
         provide(InMemoryBackendConfig, { useValue: { delay: 600 } }),
+        ROUTER_PROVIDERS,
+        CharacterService,
         EntityService,
         ExceptionService,
         MessageService,
