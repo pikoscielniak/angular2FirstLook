@@ -5,7 +5,7 @@ import 'rxjs/Rx';
 import {CharactersComponent} from './characters/characters';
 import { DashboardComponent } from './dashboard/dashboard';
 import {VehiclesComponent} from './vehicles/vehicles';
-import {CONFIG} from './shared/shared';
+import {CONFIG, MessageService} from './shared/shared';
 import {EntityService, ExceptionService, ModalComponent, ModalService, SpinnerService,SpinnerComponent,ToastComponent, ToastService} from './blocks/blocks';
 
 
@@ -18,6 +18,7 @@ import {EntityService, ExceptionService, ModalComponent, ModalService, SpinnerSe
         ROUTER_PROVIDERS,
         EntityService,
         ExceptionService,
+        MessageService,
         ModalService,
         SpinnerService,
         ToastService
@@ -36,10 +37,16 @@ export class AppComponent {
         {caption: 'Vehicles', link: ['Vehicles']}
     ]
 
-    constructor(private _service:ModalService) {
+    constructor(private _messageService:MessageService,
+                private _modalService:ModalService) {
     }
 
     resetDb() {
-        this._service.activate("yeah", "fuck");
+        let msg = 'Are you sure you want to reset the database?';
+        this._modalService.activate(msg).then(responseOK => {
+            if (responseOK) {
+                this._messageService.resetDb();
+            }
+        });
     }
 }
