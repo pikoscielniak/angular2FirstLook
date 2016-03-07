@@ -87,6 +87,6 @@ export class ModalComponent implements OnInit {
     private _hideDialog() {
         document.onkeyup = null;
         this._modalElement.style.opacity = 0;
-        window.setTimeout(() => this._modalElement.style.zIndex = 0, 400);
+        window.setTimeout(() => this._modalElement.style.zIndex = -1, 400);
     }
 }

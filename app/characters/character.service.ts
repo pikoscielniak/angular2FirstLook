@@ -1,9 +1,9 @@
-import {Injectable} from "angular2/core";
-import {Http, Response} from "angular2/http";
-import {Observable} from 'rxjs/Rx';
+import { Injectable } from 'angular2/core';
+import { Http, Response } from 'angular2/http';
+import { Observable } from 'rxjs/Rx';
 
-import {ExceptionService, SpinnerService} from '../blocks/blocks';
-import {CONFIG, MessageService} from "../shared/shared";
+import { ExceptionService, SpinnerService } from '../blocks/blocks';
+import { CONFIG, MessageService } from '../shared/shared';
 
 let charactersUrl = CONFIG.baseUrls.characters;
 
@@ -15,13 +15,14 @@ export interface Character {
 
 @Injectable()
 export class CharacterService {
-    constructor(private _http:Http,
-                private _exceptionService:ExceptionService,
-                private _messageService:MessageService,
-                private _spinnerService:SpinnerService) {
+    constructor(private _http: Http,
+                private _exceptionService: ExceptionService,
+                private _messageService: MessageService,
+                private _spinnerService: SpinnerService) {
+        this._messageService.state.subscribe(state => this.getCharacters());
     }
 
-    addCharacter(character:Character) {
+    addCharacter(character: Character) {
         let body = JSON.stringify(character);
         this._spinnerService.show();
         return this._http
@@ -31,7 +32,7 @@ export class CharacterService {
             .finally(() => this._spinnerService.hide());
     }
 
-    deleteCharacter(character:Character) {
+    deleteCharacter(character: Character) {
         this._spinnerService.show();
         return this._http
             .delete(`${charactersUrl}/${character.id}`)
@@ -42,7 +43,7 @@ export class CharacterService {
     getCharacters() {
         this._spinnerService.show();
         return this._http.get(charactersUrl)
-            .map((response:Response) => <Character[]>response.json().data)
+            .map((response: Response) => <Character[]>response.json().data)
             .catch(this._exceptionService.catchBadResponse)
             .finally(() => this._spinnerService.hide());
     }
