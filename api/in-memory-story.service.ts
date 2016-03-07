@@ -1,9 +1,4 @@
-
 export class InMemoryStoryService {
-    /**
-     * Creates fresh copy of data each time.
-     * Safe for consuming service to morph arrays and objects.
-     */
     createDb() {
         let characters = [
             {

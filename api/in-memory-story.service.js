@@ -8,10 +8,6 @@ System.register([], function(exports_1, context_1) {
             InMemoryStoryService = (function () {
                 function InMemoryStoryService() {
                 }
-                /**
-                 * Creates fresh copy of data each time.
-                 * Safe for consuming service to morph arrays and objects.
-                 */
                 InMemoryStoryService.prototype.createDb = function () {
                     var characters = [
                         {
