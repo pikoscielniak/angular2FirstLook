@@ -3,6 +3,8 @@ import {Subscription} from "rxjs/Rx";
 import {SpinnerService} from "./spinner.service";
 import {ISpinnerState} from "./spinner.service";
 
+declare var componentHandler: any;
+
 const ACTIVE_CLASS = 'is-active';
 
 @Component({

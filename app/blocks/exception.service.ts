@@ -13,7 +13,7 @@ export class ExceptionService {
     catchBadResponse:(errorResponse:any) => Observable<any> = (errorResponse:any) => {
         let res = <Response>errorResponse;
         let err = res.json();
-        let emsg = err ?
+        let msg = err ?
             (err.error ? err.error : JSON.stringify(err)) :
             (res.statusText || 'unknown error');
         this._toastService.activate(`Error - Bad Response - ${msg}`);
