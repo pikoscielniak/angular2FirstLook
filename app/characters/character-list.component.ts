@@ -1,12 +1,55 @@
-import {Component} from "angular2/core";
+import {Component, OnDestroy, OnInit, ViewChild} from "angular2/core";
 import {ROUTER_DIRECTIVES} from "angular2/router";
+import {Observable, Subscription} from 'rxjs/Rx';
+
+import {FilterTextComponent,FilterService} from "../blocks/blocks";
+import {SortCharactersPipe} from "./sort-characters.pipe";
+import { Character, CharacterService } from './character.service';
+
+declare var componentHandler:any;
 
 @Component({
     selector: 'story-characters',
     templateUrl: './app/characters/character-list.component.html',
-    directives: [ROUTER_DIRECTIVES],
-    styleUrls: ['./app/characters/character-list.component.css']
+    directives: [FilterTextComponent, ROUTER_DIRECTIVES],
+    styleUrls: ['./app/characters/character-list.component.css'],
+    pipes: [SortCharactersPipe],
+    providers: [FilterService]
 })
-export class CharacterListComponent {
+export class CharacterListComponent implements OnDestroy, OnInit {
+    private _dbResetSubscription:Subscription;
+
+    characters:Character[];
+    filteredCharacters = this.characters;
+    @ViewChild(FilterTextComponent) filterComponent:FilterTextComponent;
+
+    constructor(private _characterService:CharacterService,
+                private _filterService:FilterService) {
+    }
+
+    filterChanged(searchText:string) {
+        this.filteredCharacters = this._filterService.filter(searchText, ['id', 'name', 'side'], this.characters);
+    }
+
+    getCharacters() {
+        this.characters = [];
+
+        this._characterService.getCharacters()
+            .subscribe(characters => {
+                this.characters = this.filteredCharacters = characters;
+                this.filterComponent.clear();
+            });
+    }
+
+    ngOnDestroy() {
+        this._dbResetSubscription.unsubscribe();
+    }
+
+    ngOnInit() {
+        componentHandler.upgradeDom();
+        this.getCharacters();
+        this._dbResetSubscription = this._characterService.onDbReset
+            .subscribe(() => this.getCharacters());
+    }
 
 }

@@ -29,7 +29,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
     }
 
     gotoDetail(character: Character) {
-        let link = ['Characters', 'Characters', { id: character.id }];
+        let link = ['Characters', 'Character', { id: character.id }];
         this._router.navigate(link);
     }
 

@@ -13,7 +13,7 @@ import {CharacterComponent} from "./character.component";
 @RouteConfig([
     {path: '/', name: 'Characters', component: CharacterListComponent, useAsDefault: true},
     {path: '/list/:id', name: 'Characters', component: CharacterListComponent},
-    {path: '/:id', name: 'Characters', component: CharacterComponent}
+    {path: '/:id', name: 'Character', component: CharacterComponent}
 ])
 export class CharactersComponent {
 }
